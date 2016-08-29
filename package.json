@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/zszszsz/xx-net.js/issues"
   },
-  "homepage": "https://github.com/zszszsz/xx-net.js#readme"
+  "homepage": "https://github.com/zszszsz/xx-net.js#readme",
+  "dependencies": {
+    "merge": "^1.2.0",
+    "selfsigned": "^1.8.0"
+  }
 }
