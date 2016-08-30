@@ -29,8 +29,8 @@ try{
 }
 catch(err){};
 
-module.exports.value=config;
-module.exports.save=()=>{
-    fs.writeFile('./config.d/00-autosave.json',JSON.stringify(config));
-
+config.save=()=>{
+    fs.writeFile('./config.d/00-autosave.config.json',JSON.stringify(config));
 }
+
+module.exports=config;
