@@ -1,3 +1,7 @@
+#certificates
+*.crt
+*.pem
+
 # Logs
 logs
 *.log
