@@ -3,7 +3,7 @@ const fs=require('fs');
 const merge=require('merge')
 
 var config={
-    provider:{},
+    backend:{},
     proxy:{
         listen:[{
             host:'localhost',
@@ -14,20 +14,23 @@ var config={
     webui:{
         listen:[{
             ip:'0.0.0.0',
-            port:8086
+            port:8085
         },{
             ip:'::0',
-            port:8086
+            port:8085
         }]
     }
 };
 
 try{
     fs.readdirSync('./config.d').forEach((file,index)=>{
-        merge.recursive(config,fs.readFileSync('./'+file));
+        merge.recursive(config,JSON.parse(fs.readFileSync('./'+file)));
     });
 }
 catch(err){};
 
+module.exports.value=config;
+module.exports.save=()=>{
+    fs.writeFile('./config.d/00-autosave.json',JSON.stringify(config));
 
-module.exports=config;
+}
