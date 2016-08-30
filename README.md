@@ -1,5 +1,5 @@
 #xx-net.js
-a nodejs version of general perpose **HTTP/HTTPS MAN-IN-THE-MID PROXY** , with multiple backend.
+a nodejs version of general perpose **HTTP/HTTPS MAN-IN-THE-MID PROXY** , with multiple backends.
 
 ##certificates
 
