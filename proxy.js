@@ -5,33 +5,26 @@ const forge=require('node-forge');
 const pki=forge.pki;
 const fs=require('fs');
 
-var keys;
-
+var CAKeys;
+var CACert;
 try{
-    keys.privateKey = pki.privateKeyToPem(fs.readFileSync('private.pem'));
-    keys.publicKey = pki.publicKeyToPem(fs.readFileSync('public.pem'));
+    CAKeys.privateKey = pki.privateKeyToPem(fs.readFileSync('private.pem'));
+    CAKeys.publicKey = pki.publicKeyToPem(fs.readFileSync('public.pem'));
 }
 catch(err) {
     genCA();
 }
 
 function genCA(){
-    var cert;
-    cert=pki.createCertificate();
-    keys = pki.rsa.generateKeyPair();
-    cert.publicKey = keys.publicKey;
-    cert.setSubject([{name:'commonName',value:'xx-net.js'}]);
-    cert.setIssuer([{name:'commonName',value:'xx-net.js'}]);
-    cert.validity.notBefore = new Date();
-    cert.validity.notAfter = new Date();
-    cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1);
-    
-    cert.sign(keys.privateKey);
-    fs.writeFile('ca.crt',pki.certificateToPem(cert),()=>{console.log('cert certificate generated , place add it to browser')});
-    fs.writeFile('private.pem',pki.privateKeyToPem(keys.privateKey));
-    fs.writeFile('public.pem',pki.publicKeyToPem(keys.publicKey));
-
-    cert.setExtensions([{
+    CACert=pki.createCertificate();
+    CAKeys = pki.rsa.generateKeyPair();
+    CACert.publicKey = CAKeys.publicKey;
+    CACert.setSubject([{name:'commonName',value:'xx-net.js'}]);
+    CACert.setIssuer([{name:'commonName',value:'xx-net.js'}]);
+    CACert.validity.notBefore = new Date();
+    CACert.validity.notAfter = new Date();
+    CACert.validity.notAfter.setFullYear(CACert.validity.notBefore.getFullYear()+1);
+    CACert.setExtensions([{
         name: 'basicConstraints',
         cA: true
     }, {
@@ -59,8 +52,14 @@ function genCA(){
         objCA: true
     }]);
     
+    CACert.sign(CAKeys.privateKey);
+    fs.writeFile('ca.crt',pki.CACertificateToPem(CACert),()=>{console.log('new CA certificate generated at ./ca.crt , place add it to browser and remove obsolete CA certificates(if any)')});
+    fs.writeFile('private.pem',pki.privateKeyToPem(CAKeys.privateKey));
+    fs.writeFile('public.pem',pki.publicKeyToPem(CAKeys.publicKey));
+
     return;
 }
+
 
 module.exports=function(provider,config){
 
