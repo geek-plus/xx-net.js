@@ -3,7 +3,11 @@ const fs=require('fs');
 const merge=require('merge')
 
 var config={
-    backend:{},
+    backend:{
+        handler:{
+            
+        }
+    },
     proxy:{
         listen:[{
             host:'localhost',

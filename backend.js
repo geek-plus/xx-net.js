@@ -17,8 +17,8 @@ module.exports=(config)=>{
     }
 
     var handler;
-    handler.request=(req,res)=>{
-        backends[0].request(handler);
-    }
+
+
+    
     return handler;
 }
