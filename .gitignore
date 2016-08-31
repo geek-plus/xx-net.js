@@ -43,3 +43,4 @@ jspm_packages
 *.old
 
 jsconfig.json
+.vscode
