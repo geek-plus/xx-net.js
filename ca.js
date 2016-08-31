@@ -48,14 +48,12 @@ function sign(domain){
     cert.validity.notBefore=ca.validity.notBefore;
     cert.validity.notAfter=ca.validity.notAfter;
     cert.setSubject([{name:'commonName',value:domain}]);
-    cert.sign(keys.privateKey);
+    cert.sign(keys.privateKey,md.sha256.create);
 
     return {
         cert:pki.certificateToPem(cert),
-        keys:{
-            privateKey:pki.privateKeyToPem(keys.privateKey),
-            publicKey:pki.publicKeyToPem(keys.publicKey)
-        }
+        key:pki.privateKeyToPem(keys.privateKey),
+        publicKey:pki.publicKeyToPem(keys.publicKey)
     };
 }
 
