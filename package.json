@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/zszszsz/xx-net.js#readme",
   "dependencies": {
+    "empty-port": "0.0.2",
     "merge": "^1.2.0",
     "node-forge": "^0.6.42",
     "yargs": "^5.0.0"

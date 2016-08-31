@@ -9,7 +9,6 @@ var config={
             host:'localhost',
             port:8087
         }],
-        mitmPort:8086
     },
     webui:{
         listen:[{

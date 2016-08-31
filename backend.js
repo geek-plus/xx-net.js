@@ -4,8 +4,8 @@ const fs=require('fs');
 var backends=[];
 
 try{
-    fs.readdirSync('./backends').forEach((file,index)=>{
-        backends.push(require('./backends'+file));
+    fs.readdirSync('./backends').forEach((item,index)=>{
+        backends.push(require('./backends'+item));
     });
 }
 catch(err){};
