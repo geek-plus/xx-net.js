@@ -4,7 +4,16 @@ const merge=require('merge')
 
 var config={
     backend:{
-        handler:{
+        govenorName:'single',
+        govenor:{
+            single:{
+                backendName:'direct'
+            }
+        },
+        goagent:{
+
+        },
+        direct:{
             
         }
     },
@@ -16,10 +25,7 @@ var config={
     },
     webui:{
         listen:[{
-            ip:'0.0.0.0',
-            port:8085
-        },{
-            ip:'::0',
+            ip:'localhost',
             port:8085
         }]
     }

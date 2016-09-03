@@ -1,37 +1,26 @@
 'use strict';
 const fs=require('fs');
 
-var backendsInit=[];
-
-try{
-    fs.readdirSync('./backends').forEach((item,index)=>{
-        backendsInit.push(require('./backends'+item));
-    });
-}
-catch(err){};
-
-// var backends=[];
-
 module.exports=(config)=>{
-
-    // for(let item of backendsInit)item(config,backends);
-
-    var handler=govenor[config.govenor](config[config.govenor]);
-    return handler;
+    var govenor=govenor[config.govenorName](config);
+    return govenor;
 }
 
 var govenor={};
 
 govenor.pac=(config)=>{
-
     return (req,res)=>{
         
     }
 }
 
 govenor.single=(config)=>{
-    return (req,res)=>{
-        
-    }
+    var selected=config.govenor.single.backendName;
+    return require('./backends'+selected)(config[selected]);
 }
 
+govenor.priority=(config)=>{
+    return (req,res)=>{
+
+    }
+}
