@@ -3,7 +3,7 @@ a nodejs version of general purpose **HTTP/HTTPS MAN-IN-THE-MIDDLE PROXY** , wit
 
 ##certificates
 
-MTIM root CA certificate and other certificates are automatically created based on random RSA key pair created by node-forge.
+MITM root CA certificate and other certificates are automatically created based on random RSA key pair created by node-forge.
 
 root CA certificate is at **./ca.crt**,RSA private key of root CA is at **./private.pem**, public key is at **./public.pem**.
 
